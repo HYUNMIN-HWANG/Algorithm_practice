@@ -10,4 +10,18 @@ OX퀴즈의 결과가 주어졌을 때, 점수를 구하는 프로그램을 작�
 출력 :
 각 테스트 케이스마다 점수를 출력한다.
 
-내일 다시 
+
+import sys
+n = int(sys.stdin.readline())
+x= []
+for i in range (n) :
+    x = str(input())
+    sum = 0
+    score = 0 
+    for j in list(x) :
+        if j == 'O' :
+            score = score + 1
+            sum = sum + score
+        else :
+            score = 0
+    print(sum)
