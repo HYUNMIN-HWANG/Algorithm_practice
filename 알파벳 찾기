@@ -7,6 +7,7 @@
 각각의 알파벳에 대해서, a가 처음 등장하는 위치, b가 처음 등장하는 위치, ... z가 처음 등장하는 위치를 공백으로 구분해서 출력한다.
 만약, 어떤 알파벳이 단어에 포함되어 있지 않다면 -1을 출력한다. 단어의 첫 번째 글자는 0번째 위치이고, 두 번째 글자는 1번째 위치이다.
 
+# 제출한 답안
 s = str(input())
 print(s.find('a'),s.find('b'),s.find('c'),s.find('d'),s.find('e'),s.find('f'),\
     s.find('g'),s.find('h'),s.find('i'),s.find('j'),s.find('k'),s.find('l'),\
@@ -14,3 +15,9 @@ print(s.find('a'),s.find('b'),s.find('c'),s.find('d'),s.find('e'),s.find('f'),\
             s.find('s'),s.find('t'),s.find('u'),s.find('v'),s.find('w'),\
                 s.find('x'),s.find('y'),s.find('z'))
 
+# 좀 더 간단한 방법
+s = str(input())
+alphabet = list(range(97,123)) # 알파벳의 아스키코드 주소
+
+for x in alphabet :
+    print(s.find(chr(x)))       # 알파벳 아스키코드를 알파벳으로 변환 -> find() 함수 : 문자역에서 가장 처음 나온 위치를 반환한다. 없으면 -1 반환함
