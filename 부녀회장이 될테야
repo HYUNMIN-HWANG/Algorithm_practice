@@ -13,4 +13,16 @@
 각각의 Test case에 대해서 해당 집에 거주민 수를 출력하라.
 
 
-모르겠다. 다시하기
+t = int(input())  # 테스트 케이스
+
+for l in range(t) :
+    k = int(input())  # 몇 층
+    n = int(input())  # 몇 호
+    f1 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+    for j in range(k) :
+        count = 0
+        for i in range(n) :
+            count = count + f1[i]
+            f1[i] = count
+            # print(count)
+    print(count)
