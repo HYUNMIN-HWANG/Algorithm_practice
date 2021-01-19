@@ -35,3 +35,23 @@ else :
         print(kg_5 + kg_3)        
     else :
         print(-1)
+
+ # 제출 : 5로 나눈 나머지 (0,1,2,3,4) 경우의 수를 나누어 생각한다.
+n = int(input())
+ans = -1
+a = 0
+
+if (n % 5 == 0) :
+    ans = n // 5
+elif (n % 5 == 1) : # 6이 남은 것
+    ans = n // 5 + 1
+elif (n % 5 == 2 and n >= 12) : # 12가 남은 것
+    ans = n // 5 + 2
+elif (n % 5 == 3) : # 3이 남은 것
+    ans = n // 5 + 1
+elif (n % 5 == 4 and n >= 9) : # 9가 남은 것
+    ans = n // 5 + 2
+else :
+    ans = -1
+
+print(ans)
