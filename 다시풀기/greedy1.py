@@ -1,4 +1,4 @@
-# Greedy 01 - 체육복 https://programmers.co.kr/learn/courses/30/lessons/42862
+# Greedy 01 - 체육복
 '''
 점심시간에 도둑이 들어, 일부 학생이 체육복을 도난당했습니다. 
 다행히 여벌 체육복이 있는 학생이 이들에게 체육복을 빌려주려 합니다. 
@@ -19,5 +19,26 @@
 
 def solution(n, lost, reserve):
     
-    answer = 0
+    _reserve = []
+    _lost = []
+    
+    # 이미 여벌의 옷이 있는데 도난을 당한 경우, 수업에 참여할 수 있고 다른 사람에게 빌려줄 수 없다.
+    # 이런 학생의 경우를 제외한 리스트를 만든다.
+    for i in lost :            
+        if i not in reserve :  
+            _lost.append(i)
+    for j in reserve :            
+        if j not in lost :  
+            _reserve.append(j)
+    print(_lost, _reserve)
+    
+    # 자신의 번호보다 앞 혹은 뒤 학생이 여벌의 옷을 갖고 있는지 확인한다.
+    # p+1보다 p-1을 먼저해야, 뒷 번호인 학생들도 체육복을 빌릴 수 있다. 
+    for p in _reserve :
+        if p-1 in _lost :
+            _lost.remove(p-1)
+        elif p+1 in _lost :
+            _lost.remove(p+1)
+    
+    answer = n - len(_lost)
     return answer
