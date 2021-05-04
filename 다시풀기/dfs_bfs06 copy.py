@@ -36,17 +36,17 @@ M은 상자의 가로 칸의 수, N은 상자의 세로 칸의 수를 나타낸�
 8
 """
 from collections import deque
-m, n = map(int, input().split())
-graph = []
-for i in range(n) :
-    graph.append(list(map(int, input().split())))
+# m, n = map(int, input().split())
+# graph = []
+# for i in range(n) :
+#     graph.append(list(map(int, input().split())))
 
 queue = deque()
 
-# m, n = 6, 4
-# graph = [[1,-1,0,0,0,0],[0,-1,0,0,0,0],[0,0,0,0,-1,0],[0,0,0,0,-1,1]]
+m, n = 6, 4
+graph = [[1,-1,0,0,0,0],[0,-1,0,0,0,0],[0,0,0,0,-1,0],[0,0,0,0,-1,1]]
 
-# print(graph)
+print(graph)
 
 dx = [-1, 0, 1, 0]
 dy = [0, -1, 0, 1]
@@ -68,11 +68,11 @@ def bfs() :
 
 for i in range(n) :
     for j in range(m) :
-        if graph[i][j] == 1:    # 토마토가 심어져 있는 곳부터 시작한다.
+        if graph[i][j] == 1:
             queue.append([i, j])
 
 bfs()
-# print(graph)
+print(graph)
 
 flag = True
 result = -2
@@ -82,7 +82,7 @@ for i in graph :
     for j in i :
         if j == 0 :
             flag = False    # 0이 있으면 토마토가 익지 않은 것이 있다는 것 !
-        result = max(result, j) # 그래프 내에 있는 가장 큰 값을 찾는다.
+        result = max(result, j)
 
 if flag == False :
     print(-1)
