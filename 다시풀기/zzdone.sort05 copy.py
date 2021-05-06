@@ -41,51 +41,22 @@ cannot
 hesitate
 '''
 
-"""
-import sys
-n = 13
-words = ['but','is','wont','hestiate','no','more','no','more','it','cannot','wait','im','yours']
-# print(words)
 
 n = int(input())
-words = set()
-for i in range(n) :
-    words.add(str(sys.stdin.readline()))
-# words = list(words)
 
-# 내가 푼 것 : 퀵정렬 - 시간초과
-for i in range(1, len(words)) :
-    for j in range(i, 0, -1) :
-        # print(words[j])
-        if len(words[j]) < len(words[j-1]) :
-            words[j], words[j-1] = words[j-1], words[j]
-        elif len(words[j]) == len(words[j-1]) :
-            if words[j] < words[j-1] :
-                words[j], words[j-1] = words[j-1], words[j]
-            else :
-                break
-        else :
-            break
-    # print("============")
-for w in words :
-    sys.stdout.write(str(w))
-# print(words)
-"""
-
-n = int(input())
-word_list = list()
-sort_list = list()
+word_list = []
+sort_list = []
 
 for i in range(n) :
     word_list.append(input())
-# print(word_list)
 
 word_set = set(word_list)
 
 for word in word_set :
-    # print(word)
     sort_list.append((len(word), word))
 
-sort_list.sort()
+sort_list = sorted(sort_list)
+# print(sort_list)
+
 for i, w in sort_list :
     print(w)
