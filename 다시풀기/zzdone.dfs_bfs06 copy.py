@@ -36,55 +36,54 @@ M은 상자의 가로 칸의 수, N은 상자의 세로 칸의 수를 나타낸�
 8
 """
 from collections import deque
-# m, n = map(int, input().split())
-# graph = []
-# for i in range(n) :
-#     graph.append(list(map(int, input().split())))
+m, n = map(int, input().split())
+graph = []
+for i in range(n) :
+    graph.append(list(map(int, input().split())))
+# m, n = 6, 4
+# graph = [[1, -1, 0, 0, 0, 0], [0, -1, 0, 0, 0, 0], [0, 0, 0, 0, -1, 0], [0, 0, 0, 0, -1, 1]]
 
 queue = deque()
 
-m, n = 6, 4
-graph = [[1,-1,0,0,0,0],[0,-1,0,0,0,0],[0,0,0,0,-1,0],[0,0,0,0,-1,1]]
-
-print(graph)
-
-dx = [-1, 0, 1, 0]
-dy = [0, -1, 0, 1]
+for a in range(n) :
+    for b in range(m) :
+        if graph[a][b] == 1 :
+            queue.append([a,b])
+# print(queue)
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
 
 def bfs() :
-    while  queue :
+    while queue :
         x, y = queue.popleft()
-        for i in range(4) : 
+        # print("popleft :", x, y)
+        
+        for i in range(4) :
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if nx >= n or nx < 0 or ny >= m or ny < 0 :
+            if nx < 0 or nx >= n or ny < 0 or ny >= m :
                 continue
-
-            if graph[nx][ny] == 0 :
+            
+            if graph[nx][ny] == 0 : 
                 graph[nx][ny] = graph[x][y] + 1
                 queue.append([nx, ny])
 
-
-for i in range(n) :
-    for j in range(m) :
-        if graph[i][j] == 1:
-            queue.append([i, j])
-
 bfs()
-print(graph)
+# print(graph)
 
 flag = True
 result = -2
 
-for i in graph :
-    # print(i)
+for i in graph : 
     for j in i :
         if j == 0 :
-            flag = False    # 0이 있으면 토마토가 익지 않은 것이 있다는 것 !
+            flag = False
         result = max(result, j)
+
+# print(result)
 
 if flag == False :
     print(-1)
-else : 
+else :
     print(result-1)

@@ -35,65 +35,34 @@ K는 1이상 10,000이하의 정수이고, N은 1이상 1,000,000이하의 정�
 """
 from bisect import bisect_left, bisect_right
 import math
+import sys
 
-k, n = 4, 11
-line = [802, 743, 457, 539]
 
-# k, n = map(int, input().split())
-# line = []
-# for i in range(k) :
-#     line.append(int(input()))
-"""
+# k, n = 4, 11
+# lane = [802, 743, 457, 539]
+
+k, n = map(int, input().split())
+lane = [] 
+for _ in range(k) :
+    lane.append(int(input()))
+
 start = 0
-end = 10000000000
+end = 2**31
 
 while start <= end :
-    mid = ( start + end ) // 2
+    mid = (start + end) // 2
 
-    sum = 0
-    for a in line :
-        sum += (a // mid)
+    num = 0
 
-    if sum >= n : 
+    for i in lane :
+        num += (i // mid)
+    
+    if num >= n :   # 딱 알맞게 자르거나 좀 잘게 잘림
         start = mid + 1
     else :
         end = mid - 1
 
+# print(mid)
 print(end)
 
-"""
 
-def binary_search (arr, n, start, end) :
-    
-    mid = ( start + end ) // 2
-    # print("mid > ", mid)
-
-    if start > end :
-        # print("초과>>>")
-        return None 
-
-    sum = 0
-    for a in arr :
-        sum += (a // mid)
-    # print("sum===========>", sum)
-    if sum == n :
-        # print("yes!")
-        return end
-    if sum < n :  # 왼쪽으로 이동
-        print("left")
-        return binary_search(arr, n, start, mid-1)
-    else :          # 오른쪽으로 이동
-        print("right")
-        return binary_search(arr, n , mid+1, end)
-
-# start = 1
-# end =  max(line)
-
-start = 0
-end =  10000000000
-
-# print(start)
-# print(end)  # 4
-
-result = binary_search(line, n, start, end)
-print(result)

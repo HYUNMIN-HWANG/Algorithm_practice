@@ -1,4 +1,4 @@
-# 유기농 배추
+# 유기농 배추 https://www.acmicpc.net/problem/1012
 """
 문제
 
@@ -58,43 +58,46 @@
 """
 import sys
 
+sys.setrecursionlimit(10**6)
+
 def dfs(x, y) :
-    dx = [-1, 0, 1, 0]
-    dy = [0, -1, 0, 1]
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
 
     if graph[x][y] == 1 :
         visited[x][y] = True
-    
+
     for i in range(4) :
         nx = x + dx[i]
         ny = y + dy[i]
 
-        if nx <= -1 or nx >= n or ny <= -1 or ny >= m or visited[nx][ny] == True :
+        if nx >= n or nx < 0 or ny >= m or ny < 0 or visited[nx][ny] == True:
             continue
         
-        if graph[nx][ny] == 1 :
+        if graph[nx][ny] == 1 :#and visited[nx][ny] == 0 :
             visited[nx][ny] == True
             dfs(nx, ny)
-
+    
     return False
 
-
-sys.setrecursionlimit(10 ** 5)
-for tc in range( int(input()) ) :
+for tc in range(int(input())) :
     m, n, k = map(int, input().split())
     graph = [[0] * m for _ in range(n)]
     for _ in range(k) :
         i, j = map(int, input().split())
         graph[j][i] = 1 
-    # print(graph)    # [[0, 0, 0, 0, 1], [0, 0, 0, 0, 0], [1, 1, 1, 1, 1]]
-    visited = [[False] * m for _ in range(n)]
 
+    # print(graph)
+    # m, n, k = 10, 8, 17
+    # graph = [[1, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 1, 1, 1], [0, 0, 0, 0, 1, 0, 0, 1, 1, 1], 
+    # [0, 0, 0, 0, 0, 0, 0, 1, 1, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+    visited = [[False] * m for _ in range(n)]
     result = 0
-    for i in range(n) :
+    for i in range(n) : 
         for j in range(m) :
             if graph[i][j] == 1 and visited[i][j] == False :
                 visited[i][j] == True
                 result += 1
                 dfs(i, j)
-
     print(result)

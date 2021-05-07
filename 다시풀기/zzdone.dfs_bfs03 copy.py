@@ -1,4 +1,4 @@
-# 단지번호 붙이기 https://www.acmicpc.net/submit/2667/28789509 
+# 단지번호 붙이기 https://www.acmicpc.net/problem/2667
 '''
 # 문제
 <그림 1>과 같이 정사각형 모양의 지도가 있다. 
@@ -21,49 +21,59 @@
 import sys
 
 # 정점의 개수
-n = 7
-# n = int(input())
+# n = 7
+n = int(input())
 
-# graph
-graph= []
-for i in range(n):
-    graph.append(list(input()))
+graph = [[] for _ in range(n)]
 # print(graph)
 
-# graph = [[0,1,1,0,1,0,0],[0,1,1,0,1,0,1],[1,1,1,0,1,0,1],[0,0,0,0,1,1,1],[0,1,0,0,0,0,0],[0,1,1,1,1,1,0],[0,1,1,1,0,0,0]]
+for i in range(n) : 
+    graph[i] = list((input()))
 # print(graph)
-cnt = 0
 
-dx=[-1,0,1,0]
-dy=[0,1,0,-1]
+# graph = [['0', '1', '1', '0', '1', '0', '0'], 
+#          ['0', '1', '1', '0', '1', '0', '1'], 
+#          ['1', '1', '1', '0', '1', '0', '1'], 
+#          ['0', '0', '0', '0', '1', '1', '1'],
+#          ['0', '1', '0', '0', '0', '0', '0'], 
+#          ['0', '1', '1', '1', '1', '1', '0'], 
+#          ['0', '1', '1', '1', '0', '0', '0']]
 
-def dfs(x, y) :
-    global cnt
+
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+count = 0
+
+def dfs(x,y) :
+    global count
+    # print("(", x, y, ")")
     graph[x][y] = '0'
-    cnt += 1
+    count += 1
 
     for i in range(4) :
         nx = x + dx[i]
         ny = y + dy[i]
-
+    
         if nx < 0 or nx >= n or ny < 0 or ny >= n :
             continue
+        
         if graph[nx][ny] == '1' :
+            # print("같은 단지입니다")
             dfs(nx, ny)
-
-# danzi = 0
+    
 apt = []
 for i in range(n) :
     for j in range(n) :
-        if  graph[i][j] == '1' :
-            cnt = 0
+        if graph[i][j] == '1' : 
+            # print("-")
+            count = 0
             dfs(i, j)
-            apt.append(cnt)
-            # danzi += 1
-          
-# print(danzi)
+            apt.append(count)
+            # print("count : ", count)
+
+# print(apt)
 print(len(apt))
 apt.sort()
-for n in apt :
-    print(n)
-
+for i in apt :
+    print(i)
